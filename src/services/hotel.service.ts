@@ -1,5 +1,9 @@
 import { createHotelDTO } from "../dto/hotel.dto";
-import { createHotel, getAllHotels } from "../repositories/hotel.repository";
+import {
+  createHotel,
+  softDeleteHotel,
+  getAllHotels,
+} from "../repositories/hotel.repository";
 
 async function create(hotelData: createHotelDTO) {
   return createHotel(hotelData);
@@ -7,7 +11,12 @@ async function create(hotelData: createHotelDTO) {
 async function getAll() {
   return getAllHotels();
 }
+
+async function destroy(id: number) {
+  return softDeleteHotel(id);
+}
 export default {
   create,
   getAll,
+  destroy,
 };

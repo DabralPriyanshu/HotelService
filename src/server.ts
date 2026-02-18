@@ -28,7 +28,6 @@ app.use("/api/v2", v2Router);
 
 app.use(appErrorHandler);
 app.use(genericErrorHandler);
-
 app.listen(serverConfig.PORT, async () => {
   logger.info(`Server is running on http://localhost:${serverConfig.PORT}`);
   logger.info(`Press Ctrl+C to stop the server.`);

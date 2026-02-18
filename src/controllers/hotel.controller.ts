@@ -31,8 +31,22 @@ const getAllHotels = async (
     next(error);
   }
 };
+const deleteHotel = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const response = await hotelService.destroy(Number(req.params.id));
+    res.status(StatusCodes.OK).json({
+      message: "Hotels deleted successfully",
+      data: response,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 
 export default {
   createHotel,
   getAllHotels,
+  deleteHotel,
 };
