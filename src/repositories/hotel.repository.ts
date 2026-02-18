@@ -1,6 +1,6 @@
 import logger from "../config/logger.config";
 import Hotel from "../db/models/hotel";
-import { createHotelDTO } from "../dto/hotel.dto";
+import { createHotelDTO, updateHotelDTO } from "../dto/hotel.dto";
 import { NotFoundError } from "../utils/errors/app.error";
 
 export async function createHotel(hotelData: createHotelDTO) {
@@ -34,4 +34,29 @@ export async function softDeleteHotel(id: number) {
   await hotel.save();
   logger.info(`Hotel soft deleted: ${hotel.id}`);
   return true;
+}
+export async function updateHotel(id: number, hotelData: updateHotelDTO) {
+  const hotel = await Hotel.findByPk(id);
+  if (!hotel) {
+    logger.error(`No hotel found with ID :${id}`);
+    throw new NotFoundError(`No hotel found with ID :${id}`);
+  }
+  if (hotelData.name) {
+    hotel.name = hotelData.name;
+  }
+  if (hotelData.location) {
+    hotel.location = hotelData.location;
+  }
+  if (hotelData.address) {
+    hotel.address = hotelData.address;
+  }
+  if (hotelData.rating) {
+    hotel.rating = hotelData.rating;
+  }
+  if (hotelData.ratingCount) {
+    hotel.ratingCount = hotelData.ratingCount;
+  }
+  await hotel.save();
+  logger.info(`Hotel updated: ${hotel.id}`);
+  return hotel;
 }

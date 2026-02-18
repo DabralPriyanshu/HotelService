@@ -12,5 +12,6 @@ hotelRouter.post(
 );
 hotelRouter.get("/", hotelController.getAllHotels);
 hotelRouter.delete("/:id", hotelController.deleteHotel);
+hotelRouter.patch("/:id", hotelController.updateHotel);
 
 export default hotelRouter;
