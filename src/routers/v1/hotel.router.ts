@@ -10,5 +10,6 @@ hotelRouter.post(
   validateRequestBody(hotelSchema),
   hotelController.createHotel,
 );
+hotelRouter.get("/", hotelController.getAllHotels);
 
 export default hotelRouter;

@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject } from "zod";
 import logger from "../config/logger.config";
+import { StatusCodes } from "http-status-codes";
 
 /**
  * 
@@ -19,7 +20,7 @@ export const validateRequestBody = (schema: AnyZodObject) => {
         } catch (error) {
             // If the validation fails, 
             logger.error("Request body is invalid");
-            res.status(400).json({
+            res.status(StatusCodes.BAD_REQUEST).json({
                 message: "Invalid request body",
                 success: false,
                 error: error
