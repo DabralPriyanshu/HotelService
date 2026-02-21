@@ -1,4 +1,3 @@
-"use strict";
 
 import { DataTypes, QueryInterface } from "sequelize";
 
